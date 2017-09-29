@@ -23,6 +23,6 @@
   },
   "dependencies": {
     "autobahn": "*",
-    "couch-r": "^0.1.5"
+    "couch-r": "^0.1.8"
   }
 }

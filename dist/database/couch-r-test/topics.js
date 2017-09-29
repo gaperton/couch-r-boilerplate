@@ -19,11 +19,12 @@ exports.Topic = Topic;
 let Topics = class Topics extends couch_r_1.DocumentsCollection {
     async getTopics() {
         const { id } = this.bucket;
-        return (await this.query(this.s_all)).map(x => {
-            const topic = new Topic(x[id]);
-            topic.id = x.id;
-            return topic;
-        });
+        return (await this.query(this.s_all)).map(x => (new Topic({ id: x.id, name: x.name })));
+    }
+    async createTestData() {
+        for (let i = 0; i < 1000; i++) {
+            await this.upsert({ name: `Topic ${i}` });
+        }
     }
 };
 Topics.Document = Topic;
@@ -35,7 +36,7 @@ __decorate([
         .asProp
 ], Topics.prototype, "ix_topic_name", void 0);
 __decorate([
-    couch_r_1.select('*', 'meta(self).id')
+    couch_r_1.select('name', 'meta(self).id')
         .asProp
 ], Topics.prototype, "s_all", void 0);
 Topics = __decorate([

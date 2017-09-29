@@ -16,18 +16,22 @@ export class Topics extends DocumentsCollection<Topic> {
         .asProp
         ix_topic_name : N1qlQuery;
 
-    @select( '*', 'meta(self).id' )
+    @select( 'name', 'meta(self).id' )
         .asProp 
         s_all : N1qlQuery;
 
     async getTopics() : Promise<Topic[]> {
         const { id } = this.bucket;
 
-        return ( await this.query( this.s_all ) ).map( x => {
-            const topic = new Topic( x[ id ] );
-            topic.id = x.id;
-            return topic;
-        });
+        return ( await this.query( this.s_all ) ).map( x => (
+            new Topic({ id : x.id, name : x.name })
+        ) );
+    }
+
+    async createTestData(){
+        for( let i = 0; i < 1000; i++ ){
+            await this.upsert({ name : `Topic ${i}` });
+        }
     }
 }
 
