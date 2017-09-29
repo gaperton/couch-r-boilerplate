@@ -1,0 +1,28 @@
+{
+  "name": "couch-r-boilerplate",
+  "version": "0.1.0",
+  "description": "Project starter boilerplate for the Couch-R",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaperton/couch-r-boilerplate.git"
+  },
+  "author": "Vlad Balin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gaperton/couch-r-boilerplate/issues"
+  },
+  "homepage": "https://github.com/gaperton/couch-r-boilerplate#readme",
+  "devDependencies": {
+    "@types/couchbase": "^2.1.30",
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {
+    "autobahn": "*",
+    "couch-r": "^0.1.5"
+  }
+}
